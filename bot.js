@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+
 var dbot = require('dbot-js');
 
 var Discord = require('discord.io');
