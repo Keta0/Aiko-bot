@@ -1,4 +1,6 @@
-require('dotenv').config()
+require('dotenv').config();
+
+var dbot = require('dbot-js');
 
 var Discord = require('discord.io');
 var bot = new Discord.Client({
@@ -22,11 +24,31 @@ bot.on('message', function(user, userID, channelID, message, event) {
 
         args = args.splice(1);
         
+        // Ping Command
         if (cmd == "ping") {
         	bot.sendMessage({
             	to: channelID,
-            	message: "pong"
+            	message: "pong!"
 			});
+		} 
+		
+		// Chat with dbot
+		else if (cmd == "talk") {
+			if (args.length == 0) {
+				bot.sendMessage({
+            		to: channelID,
+            		message: "Usage /talk (msg)"
+				});
+			} else {
+				dbot.get_response(args.join(" "), function(err, result) {
+					if (!err) {
+ 				   	bot.sendMessage({
+            				to: channelID,
+            				message: result
+						});
+					}
+				});
+			}
 		}
 	}
 });
