@@ -1,38 +1,32 @@
 require('dotenv').config();
 
-
+const Eris = require("eris");
 var dbot = require('dbot-js');
 
-var Discord = require('discord.io');
-var bot = new Discord.Client({
-    autorun: true,
-    token: process.env.TOKEN
+var bot = new Eris(process.env.TOKEN);
+
+bot.on('ready', () => {
+    console.log('Logged');
 });
 
-bot.on('ready', function(event) {
-    console.log('Logged in as %s - %s\n', bot.username, bot.id);
-});
-
-bot.on('message', function(user, userID, channelID, message, event) {
-	var isBot = bot.servers[bot.channels[channelID].guild_id].members[userID].bot;
-	console.log(isBot);
+bot.on('messageCreate', (msg) => {
+	//var isBot = bot.servers[bot.channels[channelID].guild_id].members[userID].bot;
+	//console.log(isBot);
 	
-	if (isBot) return;
+	//if (isBot) return;
 	
-	if (message.substring(0, 1) == "/") {
-		var args = message.substring(1).split(' ');
+	if (msg.content.substring(0, 1) == "/") {
+		var args = msg.content.substring(1).split(' ');
         var cmd = args[0];
 
         args = args.splice(1);
         
         // Ping Command
         if (cmd == "ping") {
-        	bot.sendMessage({
-            	to: channelID,
-            	message: "pong!"
-			});
+        	bot.createMessage(msg.channel.id, "Pong!");
 		} 
 		
+		/*
 		// Chat with dbot
 		else if (cmd == "talk") {
 			if (args.length == 0) {
@@ -50,6 +44,8 @@ bot.on('message', function(user, userID, channelID, message, event) {
 					}
 				});
 			}
-		}
+		} */ 
 	}
 });
+
+bot.connect();
