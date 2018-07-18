@@ -29,48 +29,18 @@ bot.on('messageCreate', (msg) => {
 			bot.createMessage(msg.channel.id, {
                 embed: {
                     title: "Aiko-Bot | Information!",
-                    description: "Info about Aiko-Bot",
+                    description: "Info about Aiko-Bot\n
+                                  **Node Version:** " + process.version + "\n
+                                  **Eris Version:** Eris 0.8.6\n
+                                  **Operating System** " + process.platform + "\n
+                                  **Memory Usage:** " + (process.memoryUsage().heapUsed / 1024 / 1024) + "MB\n
+                                  **Uptime:** " + convertMs(bot.uptime) + "\n
+                                  **Prefix:** " + prefix + "\n
+                                  **Bot Author:** Ferdian#3422",
                     author: {
                         name: bot.user.username,
                         icon_url: bot.user.avatarURL
                     },
-                    fields: [
-                        {
-                            name: "Node version: ",
-                            value: process.version,
-                            inline: false
-                        },
-                        {
-                            name: "Eris version: ",
-                            value: "Eris 0.8.6",
-                            inline: false
-                        },
-                        {
-                            name: "Operating System: ",
-                            value: process.platform,
-                            inline: false
-                        },
-                        {
-                            name: "Memory Usage: ",
-                            value: (process.memoryUsage().heapUsed / 1024 / 1024) + " MB",
-                            inline: false
-                        },
-                        {
-                            name: "Uptime: ",
-                            value: convertMs(bot.uptime),
-                            inline: false
-                        },
-                        {
-                            name: "Prefix: ",
-                            value: prefix,
-                            inline: false
-                        },
-                        {
-                            name: "Bot Author: ",
-                            value: "Ferdian#3422",
-                            inline: false
-                        }
-                    ],
                     footer: {
                     	icon_url: msg.author.AvatarURL,
                         text: "Command issued by" + msg.author.username
