@@ -1,19 +1,17 @@
 require('dotenv').config();
-
 const Eris = require("eris");
-var dbot = require('dbot-js');
 
 var bot = new Eris(process.env.TOKEN);
 
+var prefix = "/";
+
 bot.on('ready', () => {
-    console.log('Logged');
+    console.log('Logged as ' + bot.user.username);
 });
 
 bot.on('messageCreate', (msg) => {
-	//var isBot = bot.servers[bot.channels[channelID].guild_id].members[userID].bot;
-	//console.log(isBot);
-	
-	//if (isBot) return;
+	var isBot = msg.author.bot;
+	if (isBot) return;
 	
 	if (msg.content.substring(0, 1) == "/") {
 		var args = msg.content.substring(1).split(' ');
@@ -25,6 +23,35 @@ bot.on('messageCreate', (msg) => {
         if (cmd == "ping") {
         	bot.createMessage(msg.channel.id, "Pong!");
 		} 
+		
+		// Info
+		else if (cmd == "info") {
+			bot.createMessage(msg.channel.id, {
+            embed: {
+                title: "I'm an embed!", // Title of the embed
+                description: "Here is some more info, with **awesome** formatting.\nPretty *neat*, huh?",
+                author: { // Author property
+                    name: msg.author.username,
+                    icon_url: msg.author.avatarURL
+                },
+                color: 0x81FF00, // Color, either in hex (show), or a base-10 integer
+                fields: [ // Array of field objects
+                    {
+                        name: "Some extra info.", // Field title
+                        value: "Some extra value.", // Field
+                        inline: true // Whether you want multiple fields in same line
+                    },
+                    {
+                        name: "Some more extra info.",
+                        value: "Another extra value.",
+                        inline: true
+                    }
+                ],
+                footer: { // Footer text
+                    text: "Created with Eris."
+                }
+            }
+		}
 		
 		/*
 		// Chat with dbot
