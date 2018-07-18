@@ -41,6 +41,24 @@ bot.on('messageCreate', (msg) => {
                 }
             });
 		}
+		
+		// Server Info
+		else if (cmd == "serverinfo") {
+			bot.createMessage(msg.channel.id, {
+                embed: {
+                    title: msg.channel.guild.name " | Information!",
+                    description: getServerInfo(),
+                    author: {
+                        name: bot.user.username,
+                        icon_url: bot.user.avatarURL
+                    },
+                    footer: {
+                    	icon_url: msg.author.AvatarURL,
+                        text: "Command issued by" + msg.author.username
+                    }
+                }
+            });
+		}
 	}
 });
 
@@ -60,6 +78,18 @@ function getInfo() {
     return node + "\n" + eris + "\n" + os + "\n" + mem + "\n" + up + "\n" + pre + "\n" + author;
 }
 
+function getServerInfo(guild) {
+    var owner = "**Owner:** " + ;
+    var id = "**Guild ID:** " + guild.id;
+    var region = "**Region:** " + guild.region;
+    var channel = "**Channels:** " + guild.channels.size;
+    var member = "**Members:** " + guild.members.filter(m => m.bot == false).size + "users and " + guild.members.filter(m => m.bot == true).size + "bots";
+    var online = "**Online:** " + guild.members.filter(m => m.status == "online").size ;
+    var role = "**Roles:**" + guild.roles.join(", ");
+    
+    return owner + "\n" + id + "\n" + region + "\n" + channel + "\n" + member + "\n" + online + "\n" + role;
+}
+
 function convertMs(millisec) {
     var seconds = (millisec / 1000).toFixed(1);
     var minutes = (millisec / (1000 * 60)).toFixed(1);
@@ -75,4 +105,3 @@ function convertMs(millisec) {
         return days + " Days"
     }
 }
-//
