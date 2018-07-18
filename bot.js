@@ -46,7 +46,7 @@ bot.on('messageCreate', (msg) => {
 		else if (cmd == "serverinfo") {
 			bot.createMessage(msg.channel.id, {
                 embed: {
-                    title: msg.channel.guild.name " | Information!",
+                    title: msg.channel.guild.name + " | Information!",
                     description: getServerInfo(),
                     author: {
                         name: bot.user.username,
