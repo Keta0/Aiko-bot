@@ -29,14 +29,14 @@ bot.on('messageCreate', (msg) => {
 			bot.createMessage(msg.channel.id, {
                 embed: {
                     title: "Aiko-Bot | Information!",
-                    description: "Info about Aiko-Bot\n
-                                  **Node Version:** " + process.version + "\n
+                    description: `Info about Aiko-Bot\n
+                                  **Node Version:** ` + process.version + `\n
                                   **Eris Version:** Eris 0.8.6\n
-                                  **Operating System** " + process.platform + "\n
-                                  **Memory Usage:** " + (process.memoryUsage().heapUsed / 1024 / 1024) + "MB\n
-                                  **Uptime:** " + convertMs(bot.uptime) + "\n
-                                  **Prefix:** " + prefix + "\n
-                                  **Bot Author:** Ferdian#3422",
+                                  **Operating System** ` + process.platform + `\n
+                                  **Memory Usage:** ` + (process.memoryUsage().heapUsed / 1024 / 1024) + `MB\n
+                                  **Uptime:** ` + convertMs(bot.uptime) + `\n
+                                  **Prefix:** ` + prefix + `\n
+                                  **Bot Author:** Ferdian#3422`,
                     author: {
                         name: bot.user.username,
                         icon_url: bot.user.avatarURL
