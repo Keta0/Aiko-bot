@@ -29,14 +29,7 @@ bot.on('messageCreate', (msg) => {
 			bot.createMessage(msg.channel.id, {
                 embed: {
                     title: "Aiko-Bot | Information!",
-                    description: `Info about Aiko-Bot\n
-                                  **Node Version:** ` + process.version + `\n
-                                  **Eris Version:** Eris 0.8.6\n
-                                  **Operating System** ` + process.platform + `\n
-                                  **Memory Usage:** ` + (process.memoryUsage().heapUsed / 1024 / 1024) + `MB\n
-                                  **Uptime:** ` + convertMs(bot.uptime) + `\n
-                                  **Prefix:** ` + prefix + `\n
-                                  **Bot Author:** Ferdian#3422`,
+                    description: getInfo(),
                     author: {
                         name: bot.user.username,
                         icon_url: bot.user.avatarURL
@@ -54,6 +47,18 @@ bot.on('messageCreate', (msg) => {
 bot.connect();
 
 /////////
+
+function getInfo() {
+    var node = "**Node Version:** " + process.version;
+    var eris = "**Eris Version:** Eris 0.8.6";
+    var os = "**Operating System:** " + process.platform;
+    var mem = "**Memory Usage:** " + (process.memoryUsage().heapUsed / 1024 / 1024) + "MB";
+    var up = "**Uptime:** " + convertMs(bot.uptime);
+    var pre = "**Prefix:** " + prefix;
+    var author = "**Author:** Ferdian#3422";
+    
+    return node + "\n" + eris + "\n" + os + "\n" + mem + "\n" + up + "\n" + pre + "\n" + author;
+}
 
 function convertMs(millisec) {
     var seconds = (millisec / 1000).toFixed(1);
