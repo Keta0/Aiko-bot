@@ -88,7 +88,7 @@ function getServerInfo(guild) {
     var role = "**Roles:** ";
     
     guild.roles.filter(r => 1 == 1).forEach(function(val) {
-    	role += i.name + ", ";
+    	if (val.name != "@everyone" || val.name != "Rythm") role += val.name + ", ";
     });
     
     return owner + "\n" + id + "\n" + region + "\n" + channel + "\n" + member + "\n" + online + "\n" + role;
