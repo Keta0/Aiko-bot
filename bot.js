@@ -50,28 +50,8 @@ bot.on('messageCreate', (msg) => {
                 footer: { // Footer text
                     text: "Created with Eris."
                 }
-            }
+            });
 		}
-		
-		/*
-		// Chat with dbot
-		else if (cmd == "talk") {
-			if (args.length == 0) {
-				bot.sendMessage({
-            		to: channelID,
-            		message: "Usage /talk (msg)"
-				});
-			} else {
-				dbot.get_response(args.join(" "), function(err, result) {
-					if (!err) {
- 				   	bot.sendMessage({
-            				to: channelID,
-            				message: result
-						});
-					}
-				});
-			}
-		} */ 
 	}
 });
 
