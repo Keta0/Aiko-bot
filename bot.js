@@ -84,8 +84,12 @@ function getServerInfo(guild) {
     var region = "**Region:** " + guild.region;
     var channel = "**Channels:** " + guild.channels.size;
     var member = "**Members:** " + guild.members.filter(m => m.bot == false).length + " users and " + guild.members.filter(m => m.bot == true).length + " bots";
-    var online = "**Online:** " + guild.members.filter(m => m.status == "online").size ;
-    var role = "**Roles:**" + guild.roles.filter(r => 1 == 1).forEach(function(i) {return i.name + ", "})
+    var online = "**Online:** " + guild.members.filter(m => m.status == "online").length ;
+    var role = "**Roles:** ";
+    
+    guild.roles.filter(r => 1 == 1).forEach(function(val) {
+    	role += i.name + ", ";
+    });
     
     return owner + "\n" + id + "\n" + region + "\n" + channel + "\n" + member + "\n" + online + "\n" + role;
 }
